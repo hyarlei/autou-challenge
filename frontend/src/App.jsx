@@ -16,7 +16,7 @@ function App() {
 
     try {
       // Chama o seu Backend Python
-      const response = await axios.post('https://autou-backend-5a5g.onrender.com', {
+      const response = await axios.post('https://autou-backend-5a5g.onrender.com/analyze', {
         content: emailContent
       });
       setResult(response.data);
@@ -41,7 +41,7 @@ function App() {
     formData.append("file", selectedFile);
 
     try {
-        const response = await axios.post('https://autou-backend-5a5g.onrender.com', formData, {
+        const response = await axios.post('https://autou-backend-5a5g.onrender.com/analyze-file', formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
         setResult(response.data);
