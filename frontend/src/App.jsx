@@ -10,7 +10,7 @@ function App() {
 
   const analyzeEmail = async () => {
     if (!emailContent) return;
-    
+
     setLoading(true);
     setResult(null);
 
@@ -41,22 +41,22 @@ function App() {
     formData.append("file", selectedFile);
 
     try {
-        const response = await axios.post('https://autou-backend-5a5g.onrender.com/analyze-file', formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
-        });
-        setResult(response.data);
+      const response = await axios.post('https://autou-backend-5a5g.onrender.com/analyze-file', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      setResult(response.data);
     } catch (error) {
-        console.error(error);
-        alert("Erro ao enviar arquivo.");
+      console.error(error);
+      alert("Erro ao enviar arquivo.");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="max-w-2xl w-full bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-        
+
         {/* Cabeçalho */}
         <div className="bg-slate-900 p-6 text-white flex items-center gap-3">
           <div className="p-2 bg-blue-500 rounded-lg">
@@ -69,38 +69,38 @@ function App() {
         </div>
 
         {/* Área de Upload */}
-<div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
-  <div className="flex items-center gap-4">
-    <label className="flex-1 cursor-pointer">
-      <input 
-        type="file" 
-        className="hidden" 
-        accept=".pdf,.txt"
-        onChange={handleFileUpload} 
-      />
-      <div className="flex items-center gap-3 p-3 bg-white border border-blue-200 rounded-lg hover:border-blue-400 transition-colors shadow-sm">
-        <div className="bg-blue-100 p-2 rounded-full text-blue-600">
-          <Upload size={20} />
+        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+          <div className="flex items-center gap-4">
+            <label className="flex-1 cursor-pointer">
+              <input
+                type="file"
+                className="hidden"
+                accept=".pdf,.txt"
+                onChange={handleFileUpload}
+              />
+              <div className="flex items-center gap-3 p-3 bg-white border border-blue-200 rounded-lg hover:border-blue-400 transition-colors shadow-sm">
+                <div className="bg-blue-100 p-2 rounded-full text-blue-600">
+                  <Upload size={20} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-gray-700">
+                    {file ? file.name : "Clique para enviar um arquivo"}
+                  </span>
+                  <span className="text-xs text-gray-400">Suporta PDF ou TXT</span>
+                </div>
+              </div>
+            </label>
+          </div>
         </div>
-        <div className="flex flex-col">
-          <span className="text-sm font-semibold text-gray-700">
-            {file ? file.name : "Clique para enviar um arquivo"}
-          </span>
-          <span className="text-xs text-gray-400">Suporta PDF ou TXT</span>
-        </div>
-      </div>
-    </label>
-  </div>
-</div>
 
-<div className="relative flex py-2 items-center">
-    <div className="flex-grow border-t border-gray-200"></div>
-    <span className="flex-shrink-0 mx-4 text-gray-400 text-xs uppercase font-bold">Ou digite abaixo</span>
-    <div className="flex-grow border-t border-gray-200"></div>
-</div>
+        <div className="relative flex py-2 items-center">
+          <div className="grow border-t border-gray-200"></div>
+          <span className="shrink-0 mx-4 text-gray-400 text-xs uppercase font-bold">Ou digite abaixo</span>
+          <div className="grow border-t border-gray-200"></div>
+        </div>
 
         <div className="p-6 space-y-6">
-          
+
           {/* Área de Texto */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -136,12 +136,11 @@ function App() {
             <div className="animate-fade-in space-y-4 pt-4 border-t border-gray-100">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-gray-500">Classificação:</span>
-                <span className={`px-4 py-1 rounded-full text-sm font-bold flex items-center gap-2 ${
-                  result.category === 'Produtivo' 
-                    ? 'bg-green-100 text-green-700' 
+                <span className={`px-4 py-1 rounded-full text-sm font-bold flex items-center gap-2 ${result.category === 'Produtivo'
+                    ? 'bg-green-100 text-green-700'
                     : 'bg-gray-100 text-gray-600'
-                }`}>
-                  {result.category === 'Produtivo' ? <CheckCircle size={14}/> : <AlertCircle size={14}/>}
+                  }`}>
+                  {result.category === 'Produtivo' ? <CheckCircle size={14} /> : <AlertCircle size={14} />}
                   {result.category}
                 </span>
               </div>
@@ -149,7 +148,7 @@ function App() {
               <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Sugestão de Resposta</span>
-                  <button 
+                  <button
                     onClick={() => navigator.clipboard.writeText(result.response)}
                     className="text-blue-600 hover:text-blue-800 text-xs flex items-center gap-1 font-medium"
                   >
