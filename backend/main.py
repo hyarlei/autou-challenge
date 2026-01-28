@@ -20,6 +20,7 @@ app = FastAPI()
 # Configura CORS para comunicação com o frontend
 app.add_middleware(
     CORSMiddleware,
+    # Todo: In production, restricted to Vercel domain for security
     allow_origins=["*"],  # Em produção, especificar domínios permitidos
     allow_credentials=True,
     allow_methods=["*"],
