@@ -1,11 +1,12 @@
-import os
-import json
 import io
-from fastapi import FastAPI, HTTPException, UploadFile, File
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
+import json
+import os
+
 import google.generativeai as genai
 from dotenv import load_dotenv
+from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from pypdf import PdfReader
 
 # Carrega as variáveis de ambiente
@@ -28,6 +29,7 @@ app.add_middleware(
 class EmailRequest(BaseModel):
     content: str
 
+@app.post("/")
 @app.post("/analyze")
 async def analyze_email(request: EmailRequest):
     try:
