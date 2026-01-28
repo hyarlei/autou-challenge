@@ -1,9 +1,17 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { Mail, Send, Loader2, CheckCircle, AlertCircle, Copy, Upload, FileText } from 'lucide-react';
+import axios from "axios";
+import {
+  AlertCircle,
+  CheckCircle,
+  Copy,
+  Loader2,
+  Mail,
+  Send,
+  Upload,
+} from "lucide-react";
+import { useState } from "react";
 
 function App() {
-  const [emailContent, setEmailContent] = useState('');
+  const [emailContent, setEmailContent] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
@@ -16,13 +24,18 @@ function App() {
 
     try {
       // Chama o seu Backend Python
-      const response = await axios.post('https://autou-backend-5a5g.onrender.com/analyze', {
-        content: emailContent
-      });
+      const response = await axios.post(
+        "https://autou-backend-5a5g.onrender.com/analyze",
+        {
+          content: emailContent,
+        },
+      );
       setResult(response.data);
     } catch (error) {
       console.error(error);
-      alert("Erro ao conectar com o servidor. Verifique se o Python está rodando.");
+      alert(
+        "Erro ao conectar com o servidor. Verifique se o Python está rodando.",
+      );
     } finally {
       setLoading(false);
     }
@@ -41,9 +54,13 @@ function App() {
     formData.append("file", selectedFile);
 
     try {
-      const response = await axios.post('https://autou-backend-5a5g.onrender.com/analyze-file', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      const response = await axios.post(
+        "https://autou-backend-5a5g.onrender.com/analyze-file",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       setResult(response.data);
     } catch (error) {
       console.error(error);
@@ -56,7 +73,6 @@ function App() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="max-w-2xl w-full bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-
         {/* Cabeçalho */}
         <div className="bg-slate-900 p-6 text-white flex items-center gap-3">
           <div className="p-2 bg-blue-500 rounded-lg">
@@ -64,7 +80,9 @@ function App() {
           </div>
           <div>
             <h1 className="text-xl font-bold">AutoU Email Triagem</h1>
-            <p className="text-slate-400 text-sm">Classificação Inteligente de Mensagens</p>
+            <p className="text-slate-400 text-sm">
+              Classificação Inteligente de Mensagens
+            </p>
           </div>
         </div>
 
@@ -86,7 +104,9 @@ function App() {
                   <span className="text-sm font-semibold text-gray-700">
                     {file ? file.name : "Clique para enviar um arquivo"}
                   </span>
-                  <span className="text-xs text-gray-400">Suporta PDF ou TXT</span>
+                  <span className="text-xs text-gray-400">
+                    Suporta PDF ou TXT
+                  </span>
                 </div>
               </div>
             </label>
@@ -95,12 +115,13 @@ function App() {
 
         <div className="relative flex py-2 items-center">
           <div className="grow border-t border-gray-200"></div>
-          <span className="shrink-0 mx-4 text-gray-400 text-xs uppercase font-bold">Ou digite abaixo</span>
+          <span className="shrink-0 mx-4 text-gray-400 text-xs uppercase font-bold">
+            Ou digite abaixo
+          </span>
           <div className="grow border-t border-gray-200"></div>
         </div>
 
         <div className="p-6 space-y-6">
-
           {/* Área de Texto */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -135,21 +156,34 @@ function App() {
           {result && (
             <div className="animate-fade-in space-y-4 pt-4 border-t border-gray-100">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-500">Classificação:</span>
-                <span className={`px-4 py-1 rounded-full text-sm font-bold flex items-center gap-2 ${result.category === 'Produtivo'
-                    ? 'bg-green-100 text-green-700'
-                    : 'bg-gray-100 text-gray-600'
-                  }`}>
-                  {result.category === 'Produtivo' ? <CheckCircle size={14} /> : <AlertCircle size={14} />}
+                <span className="text-sm font-medium text-gray-500">
+                  Classificação:
+                </span>
+                <span
+                  className={`px-4 py-1 rounded-full text-sm font-bold flex items-center gap-2 ${
+                    result.category === "Produtivo"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  {result.category === "Produtivo" ? (
+                    <CheckCircle size={14} />
+                  ) : (
+                    <AlertCircle size={14} />
+                  )}
                   {result.category}
                 </span>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Sugestão de Resposta</span>
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    Sugestão de Resposta
+                  </span>
                   <button
-                    onClick={() => navigator.clipboard.writeText(result.response)}
+                    onClick={() =>
+                      navigator.clipboard.writeText(result.response)
+                    }
                     className="text-blue-600 hover:text-blue-800 text-xs flex items-center gap-1 font-medium"
                   >
                     <Copy size={12} /> Copiar
