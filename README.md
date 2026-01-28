@@ -7,8 +7,10 @@
 
 Uma solução inteligente para triagem automática de emails corporativos. O sistema utiliza Inteligência Artificial para ler, interpretar e classificar mensagens (incluindo anexos PDF e TXT) em "Produtivas" ou "Improdutivas", sugerindo respostas automáticas para otimizar o tempo da equipe.
 
-✅ LINK OFICIAL (VERSÃO ESTÁVEL)**[Acesse a Aplicação Online]([https://autou-challenge-dic5ahz2z-hyarlei-silvas-projects.vercel.app](https://autou-challenge.vercel.app))**
-*(Por favor, utilize este link. Versões anteriores podem conter instabilidade no deploy)*
+---
+
+### ✅ LINK OFICIAL (VERSÃO ESTÁVEL): [👉 CLIQUE AQUI PARA ACESSAR](https://autou-challenge-dic5ahz2z-hyarlei-silvas-projects.vercel.app)
+*(Por favor, utilize este link acima. O link enviado anteriormente no formulário pode conter instabilidade no deploy)*
 
 ---
 
