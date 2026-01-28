@@ -9,7 +9,7 @@ Uma solução inteligente para triagem automática de emails corporativos. O sis
 
 ---
 
-### ✅ LINK OFICIAL (VERSÃO ESTÁVEL): [👉 CLIQUE AQUI PARA ACESSAR](https://autou-challenge-dic5ahz2z-hyarlei-silvas-projects.vercel.app)
+### ✅ LINK OFICIAL (VERSÃO ESTÁVEL): [👉 CLIQUE AQUI PARA ACESSAR](https://autou-challenge.vercel.app)
 *(Por favor, utilize este link acima. O link enviado anteriormente no formulário pode conter instabilidade no deploy)*
 
 ---
