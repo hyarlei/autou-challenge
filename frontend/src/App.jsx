@@ -54,6 +54,7 @@ function App() {
     formData.append("file", selectedFile);
 
     try {
+      console.log("ROTA CORRETA 1.5")
       const response = await axios.post(
         "https://autou-backend-5a5g.onrender.com/analyze-file",
         formData,
