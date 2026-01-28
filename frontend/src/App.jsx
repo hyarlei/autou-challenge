@@ -26,9 +26,8 @@ function App() {
       // Chama o seu Backend Python
       const response = await axios.post(
         "https://autou-backend-5a5g.onrender.com/analyze",
-        {
-          content: emailContent,
-        },
+        { content: emailContent },
+        { timeout: 60000 },
       );
       setResult(response.data);
     } catch (error) {
@@ -54,18 +53,24 @@ function App() {
     formData.append("file", selectedFile);
 
     try {
-      console.log("ROTA CORRETA 1.5")
       const response = await axios.post(
         "https://autou-backend-5a5g.onrender.com/analyze-file",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
+          timeout: 60000,
         },
       );
       setResult(response.data);
     } catch (error) {
       console.error(error);
-      alert("Erro ao enviar arquivo.");
+      if (error.code === "ECONNABORTED") {
+        alert(
+          "O servidor demorou muito para responder. Tente um arquivo menor.",
+        );
+      } else {
+        alert("Erro ao enviar arquivo.");
+      }
     } finally {
       setLoading(false);
     }
